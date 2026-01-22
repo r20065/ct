@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>MPR Viewer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-wrapper">
+  <aside class="sidebar">
+    <h2>CT Viewer</h2>
+    <input type="file" id="folderInput" webkitdirectory>
+
+    <div class="info-panel">
+      <div class="info-item">Size: <span id="infoSize">-</span></div>
+      <div class="info-item">Thick: <span id="infoThickness">-</span>mm</div>
+      <div class="info-item">Slices: <span id="infoCount">-</span></div>
+    </div>
+
+    <div class="control-section">
+      <h3>Display Settings</h3>
+      <div class="slider-row">WW: <span id="wwVal">400</span> <input type="range" id="wwSlider" min="1" max="5000" value="400"></div>
+      <div class="slider-row">WL: <span id="wlVal">40</span> <input type="range" id="wlSlider" min="-1000" max="1000" value="40"></div>
+      <label class="check-row"><input type="checkbox" id="showLines" checked> Show Reference Lines</label>
+    </div>
+
+    <div class="control-section">
+      <h3>Slice Control</h3>
+      <div>Axial (Z):<span id="zVal">0</span></div>
+      <div class="slider-block">
+          <button class="step-btn" data-target="zSlider" data-step="-1">−</button>
+          <input type="range" id="zSlider">
+          <button class="step-btn" data-target="zSlider" data-step="1">＋</button>
+      </div>
+      <div>Coronal (Y): <span id="yVal">0</span></div>
+      <div class="slider-block">
+        <button class="step-btn" data-target="ySlider" data-step="-1">−</button>
+        <input type="range" id="ySlider">
+        <button class="step-btn" data-target="ySlider" data-step="1">＋</button>
+      </div>
+      <div>Sagittal (X): <span id="xVal">0</span> </div>
+      <div class="slider-block">
+        <button class="step-btn" data-target="xSlider" data-step="-1">−</button>
+        <input type="range" id="xSlider">
+        <button class="step-btn" data-target="xSlider" data-step="1">＋</button>
+    </div>
+  </aside>
+
+  <main class="viewer-main">
+    
+      <div class="view-group" id="viewGroup">
+        
+        <div class="view-box" id="box-axial">
+          <h4 class="view-title">Axial👉</h4>
+          <div  id="axial" class="canvas-container"></div>
+        </div>
+        <div class="view-box" id="box-coronal">
+          <h4 class="view-title">Coronal👉</h4>
+          <div class="canvas-container"><canvas id="coronal"></canvas></div>
+        </div>
+        <div class="view-box" id="box-sagittal">
+          <h4 class="view-title">Sagittal👉</h4>
+          <div class="canvas-container"><canvas id="sagittal"></canvas></div>
+        </div>
+      </div>
+      
+  </div>    
+      
+      
+    </div>
+  </main>
+  <main class="view-3d" id="box-3d">
+        <h4 class="view-title-3d">3D Volume Rendering (vtk.js)</h4>
+    
+        <!-- 3D表示用 -->
+        <div id="vtkContainer" style="width:600px;height:600px;">
+
+  </main>
+</div>
+<script src="https://unpkg.com/vtk.js"></script>
+
+<script src="https://unpkg.com/vtk.js@28.16.0/vtk.js"></script>
+
+
+<script src="https://unpkg.com/dicom-parser@1.8.6/dist/dicomParser.min.js"></script>
+<script src="https://unpkg.com/cornerstone-core@2.6.1/dist/cornerstone.min.js"></script>
+<script src="https://unpkg.com/cornerstone-wado-image-loader@3.0.2/dist/cornerstoneWADOImageLoader.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
