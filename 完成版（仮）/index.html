@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Compact MPR Viewer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-wrapper">
+  <aside class="sidebar">
+    <h2>CT Viewer</h2>
+    <input type="file" id="folderInput" webkitdirectory>
+
+    <div class="info-panel">
+      <div class="info-item">Size: <span id="infoSize">-</span></div>
+      <div class="info-item">Thick: <span id="infoThickness">-</span>mm</div>
+      <div class="info-item">Slices: <span id="infoCount">-</span></div>
+    </div>
+
+    <div class="control-section">
+      <h3>Display Settings</h3>
+      <div class="slider-row">WW: <span id="wwVal">400</span> <input type="range" id="wwSlider" min="1" max="2000" value="400"></div>
+      <div class="slider-row">WL: <span id="wlVal">40</span> <input type="range" id="wlSlider" min="-1000" max="1000" value="40"></div>
+      <label class="check-row"><input type="checkbox" id="showLines" checked> Show Reference Lines</label>
+    </div>
+
+    <div class="control-section">
+      <h3>Slice Control</h3>
+      <div class="slider-block">Axial (Z): <span id="zVal">0</span> <input type="range" id="zSlider"></div>
+      <div class="slider-block">Coronal (Y): <span id="yVal">0</span> <input type="range" id="ySlider"></div>
+      <div class="slider-block">Sagittal (X): <span id="xVal">0</span> <input type="range" id="xSlider"></div>
+    </div>
+  </aside>
+
+  <main class="viewer-main">
+    
+      <div class="view-group" id="viewGroup">
+        
+        <div class="view-box" id="box-axial">
+          <h4 class="view-title">Axial</h4>
+          <div id="axial" class="canvas-container"></div>
+        </div>
+        <div class="view-box" id="box-coronal">
+          <h4 class="view-title">Coronal</h4>
+          <div class="canvas-container"><canvas id="coronal"></canvas></div>
+        </div>
+        <div class="view-box" id="box-sagittal">
+          <h4 class="view-title">Sagittal</h4>
+          <div class="canvas-container"><canvas id="sagittal"></canvas></div>
+        </div>
+      </div>
+      
+      
+      
+    </div>
+  </main>
+<div class="view-box" id="box-3d">
+    <h4 class="view-title">3D Volume Rendering (vtk.js)</h4>
+    <div id="vtk-container" style="width: 100%; height: 100%; background: black;"></div>
+</div>    
+</div>
+<script src="https://unpkg.com/vtk.js@28.16.0/vtk.js"></script>
+
+
+<script src="https://unpkg.com/dicom-parser@1.8.6/dist/dicomParser.min.js"></script>
+<script src="https://unpkg.com/cornerstone-core@2.6.1/dist/cornerstone.min.js"></script>
+<script src="https://unpkg.com/cornerstone-wado-image-loader@3.0.2/dist/cornerstoneWADOImageLoader.min.js"></script>
+<script src="viewer.js"></script>
+</body>
+</html>
